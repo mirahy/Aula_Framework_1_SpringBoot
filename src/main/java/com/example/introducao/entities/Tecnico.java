@@ -1,6 +1,9 @@
 package com.example.introducao.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -9,7 +12,10 @@ public class Tecnico extends Pessoa<Long> {
 	private static final long serialVersionUID = 1L;
 	
 	private boolean arbitro;
-
+	
+	@OneToMany(mappedBy = "tecnico")
+	private List<Equipe> equipes;
+	
 	public boolean isArbitro() {
 		return arbitro;
 	}
@@ -17,5 +23,15 @@ public class Tecnico extends Pessoa<Long> {
 	public void setArbitro(boolean arbitro) {
 		this.arbitro = arbitro;
 	}
+
+	public List<Equipe> getEquipes() {
+		return equipes;
+	}
+
+	public void setEquipes(List<Equipe> equipes) {
+		this.equipes = equipes;
+	}
+	
+	
 
 }
