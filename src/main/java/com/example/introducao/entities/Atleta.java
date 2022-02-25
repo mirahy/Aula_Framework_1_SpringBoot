@@ -1,5 +1,7 @@
 package com.example.introducao.entities;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -10,14 +12,16 @@ public class Atleta extends Pessoa<Long>{
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "data_nascimento")
-	private String dataNascimento;
+	private Date dataNascimento;
 
-	public String getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+
+	
 
 }

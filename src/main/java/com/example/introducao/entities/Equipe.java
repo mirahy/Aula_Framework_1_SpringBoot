@@ -1,7 +1,9 @@
 package com.example.introducao.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -17,7 +21,8 @@ import javax.persistence.Table;
 public class Equipe implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "nome_time")
 	private String nomeTime;
@@ -25,7 +30,14 @@ public class Equipe implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_tecnico_fk")
 	private Tecnico tecnico;
-
+	
+	@ManyToMany
+	@JoinTable(name = "tb_equipe_atleta",
+			   joinColumns = @JoinColumn(name = "equipe_id"),
+			   inverseJoinColumns = @JoinColumn(name = "atleta_id"))
+	Set<Atleta> atletas = new HashSet<>();
+	
+	
 	public Long getId() {
 		return id;
 	}
